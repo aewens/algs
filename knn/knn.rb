@@ -40,5 +40,10 @@ js = [
     {:type=>1, :xy=>[2,2]}
 ]
 
+# If `knn` is given: 
+#   an unknown point
+#   a list of known points
+#   and how many to refer to
+# It can guess the type of the unknown
 i[:type] = knn i, js, 2
 p i #=> Should be type 1
