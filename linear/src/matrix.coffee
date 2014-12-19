@@ -8,8 +8,22 @@ Matrix.init = (r,c) ->
     @self = [0,0,[]]
     @
 Matrix.fn = Matrix.prototype =
-    row: (xs...) ->
+    fill: (xs) ->
         unless xs.length is @c
+            console.log "Wrong length of array"
+            return @
+        selfish = @self[2]
+        for x in xs
+            unless x.length is @r
+                console.log "Wrong length of sub-array"
+                @self[2] = selfish
+                return @
+            @self[2].push(x)
+        @self[0] = xs.length
+        @self[1] = xs[0].length
+        @
+    row: (xs...) ->
+        unless xs.length <= @c
             console.log "Wrong number of arguments"
             return @
         unless @self[0] < @r and xs.length <= @c
@@ -20,7 +34,7 @@ Matrix.fn = Matrix.prototype =
         @self[1] = xs.length
         @
     col: (xs...) ->
-        unless xs.length is @r
+        unless xs.length <= @r
             console.log @r, xs.length
             console.log "Wrong number of arguments"
             return @
@@ -34,10 +48,6 @@ Matrix.fn = Matrix.prototype =
         @self[1] = @self[1] + 1
         @
     # mult: (xs) -> return
-
-# 2x3 [1,2,3],[4,5,6]
-# 
-# 3x2 [1,2],[3,4],[5,6]
 
 Matrix.init.prototype = Matrix.fn
 

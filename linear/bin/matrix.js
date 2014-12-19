@@ -19,10 +19,30 @@
   };
 
   Matrix.fn = Matrix.prototype = {
+    fill: function(xs) {
+      var selfish, x, _i, _len;
+      if (xs.length !== this.c) {
+        console.log("Wrong length of array");
+        return this;
+      }
+      selfish = this.self[2];
+      for (_i = 0, _len = xs.length; _i < _len; _i++) {
+        x = xs[_i];
+        if (x.length !== this.r) {
+          console.log("Wrong length of sub-array");
+          this.self[2] = selfish;
+          return this;
+        }
+        this.self[2].push(x);
+      }
+      this.self[0] = xs.length;
+      this.self[1] = xs[0].length;
+      return this;
+    },
     row: function() {
       var xs;
       xs = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-      if (xs.length !== this.c) {
+      if (!(xs.length <= this.c)) {
         console.log("Wrong number of arguments");
         return this;
       }
@@ -38,7 +58,7 @@
     col: function() {
       var i, xs, _i, _ref;
       xs = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-      if (xs.length !== this.r) {
+      if (!(xs.length <= this.r)) {
         console.log(this.r, xs.length);
         console.log("Wrong number of arguments");
         return this;
