@@ -97,7 +97,7 @@ Matrix.fn = Matrix.prototype =
         unless @c is m.r
             console.log "Matrices cannot be multiplied"
             return @
-        s = @c
+        x = @c
         r = @r
         c = m.c
         A = @self[2]
@@ -107,14 +107,10 @@ Matrix.fn = Matrix.prototype =
             C.push([])
             for ci in [0..c-1]
                 C[cj].push(0)
-        [x, y] = [0,0]
         for i in [0..r-1]
             for j in [0..c-1]
-                for k in [0..s-1]
-                    C[y][x] = C[y][x] + (A[i][k]*B[k][j])
-                x = x + 1
-            x = 0
-            y = y + 1
+                for k in [0..x-1]
+                    C[i][j] = C[i][j] + (A[i][k]*B[k][j])
         C
 
 Matrix.init.prototype = Matrix.fn
