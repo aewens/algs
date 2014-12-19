@@ -150,6 +150,25 @@
       }
       return C;
     },
+    sub: function(m) {
+      var A, B, C, c, i, j, r, _i, _j, _ref, _ref1;
+      if (!(this.r === m.r && this.c === m.c)) {
+        console.log("Matrices cannot be subtracted");
+        return this;
+      }
+      r = this.r;
+      c = this.c;
+      A = this.self[2];
+      B = m.self[2];
+      C = [];
+      for (i = _i = 0, _ref = r - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+        C.push([]);
+        for (j = _j = 0, _ref1 = c - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; j = 0 <= _ref1 ? ++_j : --_j) {
+          C[i].push(A[i][j] - B[i][j]);
+        }
+      }
+      return C;
+    },
     mult: function(m) {
       var A, B, C, c, i, j, k, r, x, _i, _j, _k, _ref, _ref1, _ref2;
       if (this.c !== m.r) {

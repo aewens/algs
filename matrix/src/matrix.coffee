@@ -109,6 +109,21 @@ Matrix.fn = Matrix.prototype =
             for j in [0..c-1]
                 C[i].push(A[i][j] + B[i][j])
         C
+    
+    sub: (m) ->
+        unless @r is m.r and @c is m.c
+            console.log "Matrices cannot be subtracted"
+            return @
+        r = @r
+        c = @c
+        A = @self[2]
+        B = m.self[2]
+        C = []
+        for i in [0..r-1]
+            C.push([])
+            for j in [0..c-1]
+                C[i].push(A[i][j] - B[i][j])
+        C
         
     mult: (m) ->
         unless @c is m.r
