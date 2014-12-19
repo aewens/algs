@@ -2,7 +2,7 @@
 str = (s) ->
     if typeof s != "string"
         console.log "Expected type: string"
-        return undefined
+        return false
     else
         return s
         

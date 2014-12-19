@@ -4,7 +4,9 @@
     __slice = [].slice;
 
   Matrix = function(r, c) {
-    if (typeof r === "number" && typeof c === "number") {
+    var num;
+    num = T("number");
+    if (num.check(r) && num.check(c)) {
       return new Matrix.init(r, c);
     } else {
       return void 0;

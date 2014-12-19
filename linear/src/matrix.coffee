@@ -2,7 +2,8 @@
 # TODO: Merge matrix library and type monad to one file
 
 Matrix = (r,c) ->
-    if typeof r is "number" and typeof c is "number"
+    num = T("number")
+    if num.check(r) and num.check(c)
         return new Matrix.init(r,c)
     else
         return undefined
