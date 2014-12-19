@@ -128,6 +128,37 @@
       this.c = r;
       this.self[2] = self;
       return this;
+    },
+    mult: function(m) {
+      var A, B, C, c, ci, cj, i, j, k, r, s, x, y, _i, _j, _k, _l, _m, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
+      if (this.c !== m.r) {
+        console.log("Matrices cannot be multiplied");
+        return this;
+      }
+      s = this.c;
+      r = this.r;
+      c = m.c;
+      A = this.self[2];
+      B = m.self[2];
+      C = new Array(r);
+      for (cj = _i = 0, _ref = C.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; cj = 0 <= _ref ? ++_i : --_i) {
+        C[cj] = [];
+        for (ci = _j = 0, _ref1 = c - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; ci = 0 <= _ref1 ? ++_j : --_j) {
+          C[cj][ci] = 0;
+        }
+      }
+      _ref2 = [0, 0], x = _ref2[0], y = _ref2[1];
+      for (j = _k = 0, _ref3 = c - 1; 0 <= _ref3 ? _k <= _ref3 : _k >= _ref3; j = 0 <= _ref3 ? ++_k : --_k) {
+        for (i = _l = 0, _ref4 = r - 1; 0 <= _ref4 ? _l <= _ref4 : _l >= _ref4; i = 0 <= _ref4 ? ++_l : --_l) {
+          for (k = _m = 0, _ref5 = s - 1; 0 <= _ref5 ? _m <= _ref5 : _m >= _ref5; k = 0 <= _ref5 ? ++_m : --_m) {
+            C[y][x] = C[y][x] + (A[j][k] * B[k][i]);
+          }
+          x = x + 1;
+        }
+        x = 0;
+        y = y + 1;
+      }
+      return C;
     }
   };
 
