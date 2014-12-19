@@ -102,16 +102,16 @@ Matrix.fn = Matrix.prototype =
         c = m.c
         A = @self[2]
         B = m.self[2]
-        C = new Array(r)
-        for cj in [0..C.length-1]
-            C[cj] = []
+        C = []
+        for cj in [0..r-1]
+            C.push([])
             for ci in [0..c-1]
-                C[cj][ci] = 0
+                C[cj].push(0)
         [x, y] = [0,0]
-        for j in [0..c-1]
-            for i in [0..r-1]
+        for i in [0..r-1]
+            for j in [0..c-1]
                 for k in [0..s-1]
-                    C[y][x] = C[y][x] + (A[j][k]*B[k][i])
+                    C[y][x] = C[y][x] + (A[i][k]*B[k][j])
                 x = x + 1
             x = 0
             y = y + 1

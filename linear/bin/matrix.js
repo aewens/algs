@@ -142,18 +142,18 @@
       c = m.c;
       A = this.self[2];
       B = m.self[2];
-      C = new Array(r);
-      for (cj = _i = 0, _ref = C.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; cj = 0 <= _ref ? ++_i : --_i) {
-        C[cj] = [];
+      C = [];
+      for (cj = _i = 0, _ref = r - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; cj = 0 <= _ref ? ++_i : --_i) {
+        C.push([]);
         for (ci = _j = 0, _ref1 = c - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; ci = 0 <= _ref1 ? ++_j : --_j) {
-          C[cj][ci] = 0;
+          C[cj].push(0);
         }
       }
       _ref2 = [0, 0], x = _ref2[0], y = _ref2[1];
-      for (j = _k = 0, _ref3 = c - 1; 0 <= _ref3 ? _k <= _ref3 : _k >= _ref3; j = 0 <= _ref3 ? ++_k : --_k) {
-        for (i = _l = 0, _ref4 = r - 1; 0 <= _ref4 ? _l <= _ref4 : _l >= _ref4; i = 0 <= _ref4 ? ++_l : --_l) {
+      for (i = _k = 0, _ref3 = r - 1; 0 <= _ref3 ? _k <= _ref3 : _k >= _ref3; i = 0 <= _ref3 ? ++_k : --_k) {
+        for (j = _l = 0, _ref4 = c - 1; 0 <= _ref4 ? _l <= _ref4 : _l >= _ref4; j = 0 <= _ref4 ? ++_l : --_l) {
           for (k = _m = 0, _ref5 = s - 1; 0 <= _ref5 ? _m <= _ref5 : _m >= _ref5; k = 0 <= _ref5 ? ++_m : --_m) {
-            C[y][x] = C[y][x] + (A[j][k] * B[k][i]);
+            C[y][x] = C[y][x] + (A[i][k] * B[k][j]);
           }
           x = x + 1;
         }
