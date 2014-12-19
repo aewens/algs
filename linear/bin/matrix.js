@@ -19,6 +19,30 @@
   };
 
   Matrix.fn = Matrix.prototype = {
+    clear: function() {
+      return new Matrix.init(this.r, this.c);
+    },
+    print: function() {
+      var text, x, xs, _i, _j, _len, _len1, _ref;
+      text = "[";
+      _ref = this.self[2];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        xs = _ref[_i];
+        for (_j = 0, _len1 = xs.length; _j < _len1; _j++) {
+          x = xs[_j];
+          text = text + ("" + x);
+          if (x !== xs[xs.length - 1]) {
+            text = text + " ";
+          }
+        }
+        if (xs === this.self[2][this.self[2].length - 1]) {
+          text = text + "]";
+        } else {
+          text = text + "\n  ";
+        }
+      }
+      return console.log(text);
+    },
     fill: function(xs) {
       var selfish, x, _i, _len;
       if (xs.length !== this.c) {

@@ -6,10 +6,25 @@ Matrix = (r,c) ->
         
 Matrix.init = (r,c) ->
     [@r,@c] = [r,c]
+    # self[0] :: How full the row is
+    # self[1] :: How full the column is
+    # self[2] :: The actual matrix
     @self = [0,0,[]]
     @
     
 Matrix.fn = Matrix.prototype =
+    clear: -> new Matrix.init(@r, @c)
+    print: ->
+        text = "["
+        for xs in @self[2]
+            for x in xs
+                text = text + "#{x}"
+                text = text + " " unless x is xs[xs.length-1]
+            if xs is @self[2][@self[2].length-1]
+                text = text + "]"
+            else
+                text = text + "\n  "
+        console.log text
     fill: (xs) ->
         unless xs.length is @c
             console.log "Wrong length of array"
