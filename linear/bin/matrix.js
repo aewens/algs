@@ -41,11 +41,12 @@
           text = text + "\n  ";
         }
       }
-      return console.log(text);
+      return text;
     },
     fill: function(xs) {
       var selfish, x, _i, _len;
-      if (xs.length !== this.c) {
+      console.log(xs);
+      if (xs.length !== this.r) {
         console.log("Wrong length of array");
         return this;
       }
@@ -53,7 +54,7 @@
       this.self[2] = [];
       for (_i = 0, _len = xs.length; _i < _len; _i++) {
         x = xs[_i];
-        if (x.length !== this.r) {
+        if (x.length !== this.c) {
           console.log("Wrong length of sub-array");
           this.self[2] = selfish;
           return this;
@@ -109,6 +110,23 @@
       }
       this.self[0] = xs.length;
       this.self[1] = this.self[1] + 1;
+      return this;
+    },
+    transpose: function() {
+      var c, i, j, r, s, self, _i, _j, _k, _ref, _ref1, _ref2, _ref3;
+      self = new Array(this.c);
+      for (s = _i = 0, _ref = self.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; s = 0 <= _ref ? ++_i : --_i) {
+        self[s] = new Array(this.r);
+      }
+      for (i = _j = 0, _ref1 = this.self[2].length - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; i = 0 <= _ref1 ? ++_j : --_j) {
+        for (j = _k = 0, _ref2 = this.self[2][0].length - 1; 0 <= _ref2 ? _k <= _ref2 : _k >= _ref2; j = 0 <= _ref2 ? ++_k : --_k) {
+          self[j][i] = this.self[2][i][j];
+        }
+      }
+      _ref3 = [this.r, this.c], r = _ref3[0], c = _ref3[1];
+      this.r = c;
+      this.c = r;
+      this.self[2] = self;
       return this;
     }
   };

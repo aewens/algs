@@ -1,3 +1,6 @@
+# Dependes on Type monad
+# TODO: Merge matrix library and type monad to one file
+
 Matrix = (r,c) ->
     if typeof r is "number" and typeof c is "number"
         return new Matrix.init(r,c)
@@ -24,15 +27,16 @@ Matrix.fn = Matrix.prototype =
                 text = text + "]"
             else
                 text = text + "\n  "
-        console.log text
+        return text
     fill: (xs) ->
-        unless xs.length is @c
+        console.log xs
+        unless xs.length is @r
             console.log "Wrong length of array"
             return @
         selfish = @self[2]
         @self[2] = []
         for x in xs
-            unless x.length is @r
+            unless x.length is @c
                 console.log "Wrong length of sub-array"
                 @self[2] = selfish
                 return @
@@ -76,7 +80,19 @@ Matrix.fn = Matrix.prototype =
         @self[0] = xs.length
         @self[1] = @self[1] + 1
         @
-    # mult: (xs) -> return
+    transpose: ->
+        self = new Array(@c)
+        for s in [0..self.length-1]
+            self[s] = new Array(@r)
+        for i in [0..@self[2].length-1]
+            for j in [0..@self[2][0].length-1]
+                self[j][i] = @self[2][i][j]
+        [r,c] = [@r,@c]
+        @r = c
+        @c = r
+        @self[2] = self
+        @
+    # mult: (Mx) ->
 
 Matrix.init.prototype = Matrix.fn
 
