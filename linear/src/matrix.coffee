@@ -3,10 +3,12 @@ Matrix = (r,c) ->
         return new Matrix.init(r,c)
     else
         return undefined
+        
 Matrix.init = (r,c) ->
     [@r,@c] = [r,c]
     @self = [0,0,[]]
     @
+    
 Matrix.fn = Matrix.prototype =
     fill: (xs) ->
         unless xs.length is @c
@@ -22,6 +24,7 @@ Matrix.fn = Matrix.prototype =
         @self[0] = xs.length
         @self[1] = xs[0].length
         @
+        
     row: (xs...) ->
         unless xs.length <= @c
             console.log "Wrong number of arguments"
@@ -33,6 +36,7 @@ Matrix.fn = Matrix.prototype =
         @self[0] = @self[0] + 1
         @self[1] = xs.length
         @
+        
     col: (xs...) ->
         unless xs.length <= @r
             console.log @r, xs.length
