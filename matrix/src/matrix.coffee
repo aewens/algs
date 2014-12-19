@@ -81,6 +81,7 @@ Matrix.fn = Matrix.prototype =
         @self[0] = xs.length
         @self[1] = @self[1] + 1
         @
+        
     transpose: ->
         self = new Array(@c)
         for s in [0..self.length-1]
@@ -93,6 +94,22 @@ Matrix.fn = Matrix.prototype =
         @c = r
         @self[2] = self
         @
+        
+    add: (m) ->
+        unless @r is m.r and @c is m.c
+            console.log "Matrices cannot be added"
+            return @
+        r = @r
+        c = @c
+        A = @self[2]
+        B = m.self[2]
+        C = []
+        for i in [0..r-1]
+            C.push([])
+            for j in [0..c-1]
+                C[i].push(A[i][j] + B[i][j])
+        C
+        
     mult: (m) ->
         unless @c is m.r
             console.log "Matrices cannot be multiplied"
@@ -103,12 +120,10 @@ Matrix.fn = Matrix.prototype =
         A = @self[2]
         B = m.self[2]
         C = []
-        for cj in [0..r-1]
-            C.push([])
-            for ci in [0..c-1]
-                C[cj].push(0)
         for i in [0..r-1]
+            C.push([])
             for j in [0..c-1]
+                C[i].push(0)
                 for k in [0..x-1]
                     C[i][j] = C[i][j] + (A[i][k]*B[k][j])
         C

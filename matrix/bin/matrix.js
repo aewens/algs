@@ -131,34 +131,45 @@
       this.self[2] = self;
       return this;
     },
+    add: function(m) {
+      var A, B, C, c, i, j, r, _i, _j, _ref, _ref1;
+      if (!(this.r === m.r && this.c === m.c)) {
+        console.log("Matrices cannot be added");
+        return this;
+      }
+      r = this.r;
+      c = this.c;
+      A = this.self[2];
+      B = m.self[2];
+      C = [];
+      for (i = _i = 0, _ref = r - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+        C.push([]);
+        for (j = _j = 0, _ref1 = c - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; j = 0 <= _ref1 ? ++_j : --_j) {
+          C[i].push(A[i][j] + B[i][j]);
+        }
+      }
+      return C;
+    },
     mult: function(m) {
-      var A, B, C, c, ci, cj, i, j, k, r, s, x, y, _i, _j, _k, _l, _m, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
+      var A, B, C, c, i, j, k, r, x, _i, _j, _k, _ref, _ref1, _ref2;
       if (this.c !== m.r) {
         console.log("Matrices cannot be multiplied");
         return this;
       }
-      s = this.c;
+      x = this.c;
       r = this.r;
       c = m.c;
       A = this.self[2];
       B = m.self[2];
       C = [];
-      for (cj = _i = 0, _ref = r - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; cj = 0 <= _ref ? ++_i : --_i) {
+      for (i = _i = 0, _ref = r - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
         C.push([]);
-        for (ci = _j = 0, _ref1 = c - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; ci = 0 <= _ref1 ? ++_j : --_j) {
-          C[cj].push(0);
-        }
-      }
-      _ref2 = [0, 0], x = _ref2[0], y = _ref2[1];
-      for (i = _k = 0, _ref3 = r - 1; 0 <= _ref3 ? _k <= _ref3 : _k >= _ref3; i = 0 <= _ref3 ? ++_k : --_k) {
-        for (j = _l = 0, _ref4 = c - 1; 0 <= _ref4 ? _l <= _ref4 : _l >= _ref4; j = 0 <= _ref4 ? ++_l : --_l) {
-          for (k = _m = 0, _ref5 = s - 1; 0 <= _ref5 ? _m <= _ref5 : _m >= _ref5; k = 0 <= _ref5 ? ++_m : --_m) {
-            C[y][x] = C[y][x] + (A[i][k] * B[k][j]);
+        for (j = _j = 0, _ref1 = c - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; j = 0 <= _ref1 ? ++_j : --_j) {
+          C[i].push(0);
+          for (k = _k = 0, _ref2 = x - 1; 0 <= _ref2 ? _k <= _ref2 : _k >= _ref2; k = 0 <= _ref2 ? ++_k : --_k) {
+            C[i][j] = C[i][j] + (A[i][k] * B[k][j]);
           }
-          x = x + 1;
         }
-        x = 0;
-        y = y + 1;
       }
       return C;
     }
