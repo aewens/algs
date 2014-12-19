@@ -26,10 +26,15 @@
         return this;
       }
       selfish = this.self[2];
+      this.self[2] = [];
       for (_i = 0, _len = xs.length; _i < _len; _i++) {
         x = xs[_i];
         if (x.length !== this.r) {
           console.log("Wrong length of sub-array");
+          this.self[2] = selfish;
+          return this;
+        }
+        if (!T("number").arr(x)) {
           this.self[2] = selfish;
           return this;
         }
@@ -50,6 +55,9 @@
         console.log("Matrix is filled");
         return this;
       }
+      if (!T("number").arr(xs)) {
+        return this;
+      }
       this.self[2].push(xs);
       this.self[0] = this.self[0] + 1;
       this.self[1] = xs.length;
@@ -59,12 +67,14 @@
       var i, xs, _i, _ref;
       xs = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       if (!(xs.length <= this.r)) {
-        console.log(this.r, xs.length);
         console.log("Wrong number of arguments");
         return this;
       }
       if (!(this.self[1] < this.c && xs.length <= this.r)) {
         console.log("Matrix is filled");
+        return this;
+      }
+      if (!T("number").arr(xs)) {
         return this;
       }
       for (i = _i = 0, _ref = xs.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {

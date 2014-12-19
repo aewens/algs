@@ -15,9 +15,14 @@ Matrix.fn = Matrix.prototype =
             console.log "Wrong length of array"
             return @
         selfish = @self[2]
+        @self[2] = []
         for x in xs
             unless x.length is @r
                 console.log "Wrong length of sub-array"
+                @self[2] = selfish
+                return @
+            unless T("number").arr(x)
+                # T(Type) monad logs its own errors
                 @self[2] = selfish
                 return @
             @self[2].push(x)
@@ -32,6 +37,9 @@ Matrix.fn = Matrix.prototype =
         unless @self[0] < @r and xs.length <= @c
             console.log "Matrix is filled"
             return @
+        unless T("number").arr(xs)
+            # T(Type) monad logs its own errors
+            return @
         @self[2].push(xs)
         @self[0] = @self[0] + 1
         @self[1] = xs.length
@@ -39,11 +47,13 @@ Matrix.fn = Matrix.prototype =
         
     col: (xs...) ->
         unless xs.length <= @r
-            console.log @r, xs.length
             console.log "Wrong number of arguments"
             return @
         unless @self[1] < @c and xs.length <= @r
             console.log "Matrix is filled"
+            return @
+        unless T("number").arr(xs)
+            # T(Type) monad logs its own errors
             return @
         for i in [0..xs.length-1]
             @self[2][i] = [] if @self[2][i] is undefined
