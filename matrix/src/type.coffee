@@ -1,3 +1,5 @@
+## Deprecated :(
+
 # Private helper functions
 str = (s) ->
     if typeof s != "string"

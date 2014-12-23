@@ -1,5 +1,6 @@
+## Deprecated :(
+
 # Dependes on Type monad
-# TODO: Merge matrix library and type monad to one file
 
 Matrix = (r,c) ->
     num = T("number")
